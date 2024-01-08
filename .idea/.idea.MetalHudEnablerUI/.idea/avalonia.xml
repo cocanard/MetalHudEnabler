@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="MetalHudEnablerUI/App.axaml" value="MetalHudEnablerUI/MetalHudEnablerUI.csproj" />
+        <entry key="MetalHudEnablerUI/MainWindow.axaml" value="MetalHudEnablerUI/MetalHudEnablerUI.csproj" />
+        <entry key="MetalHudEnablerUI/MenuApp.axaml" value="MetalHudEnablerUI/MetalHudEnablerUI.csproj" />
+      </map>
+    </option>
+  </component>
+</project>

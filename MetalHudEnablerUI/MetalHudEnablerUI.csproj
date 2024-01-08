@@ -1,0 +1,54 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net7.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+        <ApplicationManifest>app.manifest</ApplicationManifest>
+        <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+        <PublishAot>false</PublishAot>
+        <UseAppHost>true</UseAppHost>
+
+        <CFBundleName>MetalHudEnabler</CFBundleName> <!-- Also defines .app file name -->
+        <CFBundleDisplayName>MetalHudEnabler</CFBundleDisplayName>
+        <CFBundleIdentifier>cocanard</CFBundleIdentifier>
+        <CFBundleVersion>1.0</CFBundleVersion>
+        <CFBundleShortVersionString>1.0</CFBundleShortVersionString>
+        <CFBundlePackageType>APPL</CFBundlePackageType>
+        <CFBundleExecutable>MetalHudEnabler</CFBundleExecutable>
+        <CFBundleIconFile>metal3.icns</CFBundleIconFile>
+        <NSPrincipalClass>NSApplication</NSPrincipalClass>
+        <NSHighResolutionCapable>true</NSHighResolutionCapable>
+        <LSUIElement>1</LSUIElement>
+    </PropertyGroup>
+
+
+    <ItemGroup>
+        <PackageReference Include="Avalonia" Version="11.0.6" />
+        <PackageReference Include="Avalonia.Desktop" Version="11.0.6" />
+        <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.6" />
+        <PackageReference Include="Avalonia.Fonts.Inter" Version="11.0.6" />
+        <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
+        <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.6" />
+        <PackageReference Include="DotNet.Bundle" Version="0.9.13" />
+    </ItemGroup>
+    <ItemGroup>
+        <AvaloniaResource Include="metal3.ico" />
+        <AvaloniaResource Remove="MetalHudEnabler.app\**" />
+    </ItemGroup>
+    <ItemGroup>
+      <AvaloniaXaml Remove="MetalHudEnabler.app\**" />
+    </ItemGroup>
+    <ItemGroup>
+      <Compile Remove="MetalHudEnabler.app\**" />
+    </ItemGroup>
+    <ItemGroup>
+      <EmbeddedResource Remove="MetalHudEnabler.app\**" />
+    </ItemGroup>
+    <ItemGroup>
+      <AdditionalFiles Remove="MetalHudEnabler.app\**" />
+    </ItemGroup>
+    <ItemGroup>
+      <None Remove="MetalHudEnabler.app\**" />
+    </ItemGroup>
+</Project>
