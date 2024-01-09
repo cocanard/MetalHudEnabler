@@ -1,7 +1,4 @@
-using System;
 using System.Diagnostics;
-using Avalonia;
-using Avalonia.Controls;
 
 namespace MetalHudEnablerUI;
 
