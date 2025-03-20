@@ -1,0 +1,4 @@
+bin
+obj
+Build/bin
+Build/MetalHudEnabler.app/*

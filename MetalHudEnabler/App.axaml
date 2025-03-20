@@ -14,10 +14,9 @@
         <TrayIcons>
             <TrayIcon Icon="metal3.ico">
                 <TrayIcon.Menu>
-                    <NativeMenu>
-                        <NativeMenuItem Header="" IsEnabled="False" PropertyChanged="UpdateMainText"/>
+                    <NativeMenu >
+                        <NativeMenuItem  Header="Enable Hud" ToggleType="CheckBox" PropertyChanged="ChangeValue" Click="ChangeValue"/>
                         <NativeMenuItemSeparator/>
-                        <NativeMenuItem Header="Enable/Disable" Click="ChangeValue"/>
                         <NativeMenuItem Header="Quit" Click="OnExit"/>                        
                     </NativeMenu>
                 </TrayIcon.Menu>

@@ -1,8 +1,12 @@
 using System;
+using System.ComponentModel;
+using System.Diagnostics.Tracing;
+using System.Linq;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using Avalonia.VisualTree;
 
 namespace MetalHudEnablerUI;
 
@@ -10,10 +14,11 @@ public partial class App : Application
 {
     public override void Initialize()
     {
-        AvaloniaXamlLoader.Load(this); 
+        AvaloniaXamlLoader.Load(this);
     }
 
     private MetalHudHandler hudhandler = new();
+    private NativeMenuItem? checkbox;
 
     public override void OnFrameworkInitializationCompleted()
     {
@@ -21,7 +26,6 @@ public partial class App : Application
         {
             desktop.ShutdownMode = ShutdownMode.OnExplicitShutdown;
         }
-        
         base.OnFrameworkInitializationCompleted();
     }
 
@@ -30,24 +34,25 @@ public partial class App : Application
         Environment.Exit(0);
     }
 
-    private NativeMenuItem? item;
+    private void ChangeValue(object? sender, AvaloniaPropertyChangedEventArgs e)
+    {
+        //function used to first refresh the value on window init
+        if(checkbox is null)
+        {
+            checkbox = (NativeMenuItem)sender;
+            UpdateMainText();
+        }        
+    }
 
     private void ChangeValue(object? sender, EventArgs e)
     {
+        if(checkbox is null) checkbox = (NativeMenuItem)sender;
         hudhandler.ChangeValue();
         UpdateMainText();
     }
 
-    private void UpdateMainText(object? sender, AvaloniaPropertyChangedEventArgs e)
-    {
-        if (item != null) return;
-        item = (NativeMenuItem)sender;
-        UpdateMainText();
-    }
-    
-
     private void UpdateMainText()
     {
-        item.Header = "Hud is " + (MetalHudHandler.GetValue() ? "enabled" : "disabled");
+        checkbox.IsChecked = MetalHudHandler.GetValue();
     }
 }
